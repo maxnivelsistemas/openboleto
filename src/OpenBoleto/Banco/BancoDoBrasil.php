@@ -94,6 +94,44 @@ class BancoDoBrasil extends BoletoAbstract
     }
 
     /**
+     * Define o dígito da agência
+     *
+     * @param string|int $agenciaDv
+     * @return BancoDoBrasil
+     */
+    public function setAgenciaDv($agenciaDv)
+    {
+        if(is_numeric($agenciaDv) && $agenciaDv > 0){
+            return parent::setAgenciaDv($agenciaDv);
+        }
+        if(!is_numeric($agenciaDv) && $agenciaDv != "X"){
+            $this->agenciaDv = $agenciaDv;
+            return $this;
+        }
+        $this->agenciaDv = "X";
+        return $this;
+    }
+
+    /**
+     * Define o dígito verificador da conta
+     *
+     * @param int $contaDv
+     * @return BancoDoBrasil
+     */
+    public function setContaDv($contaDv)
+    {
+        if(is_numeric($contaDv) && $contaDv > 0){
+            return parent::setContaDv($contaDv);
+        }
+        if(!is_numeric($contaDv) && $contaDv != "X"){
+            $this->contaDv = $contaDv;
+            return $this;
+        }
+        $this->contaDv = "X";
+        return $this;
+    }
+
+    /**
      * Gera o Nosso Número.
      *
      * @throws Exception
